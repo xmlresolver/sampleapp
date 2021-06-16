@@ -110,17 +110,24 @@ jar {
 }
 jar.dependsOn setupDist
 
-task copyJar(dependsOn: ["jar", "setupDist"], type: Copy) {
-  into "${buildDir}/dist"
-  from ("${buildDir}/libs") {
-    include "*.jar"
+task copyJar(dependsOn: ["jar", "setupDist"]) {
+  doLast {
+    copy {
+      from "${buildDir}/dist"
+      into "${buildDir}/stage"
+    }
+  }
+
+  doLast {
+    copy {
+      from "${buildDir}/libs"
+      into "${buildDir}/stage"
+    }
   }
 }
 
 task dist(dependsOn: ["copyJar", "setupDist"], type: Zip) {
-  from("${buildDir}/dist") {
-    include "**/*"
-  }
+  from "${buildDir}/stage"
   into 'xmlresolver-sampleapp-' + relVersion
   archiveFileName = "xmlresolver-sampleapp-${relVersion}.zip"
 }
