@@ -1,0 +1,354 @@
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/JATS-articleauthoring1.dtd"
+        uri="1.2/JATS-articleauthoring1.dtd"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/JATS-articleauthcustom-modules1.ent"
+        uri="1.2/JATS-articleauthcustom-modules1.ent"/>
+
+<public publicId="-//NLM//DTD JATS (Z39.96) Article Authoring DTD-Specific Modules v1.2 20190208//EN"
+        uri="1.2/JATS-articleauthcustom-modules1.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/JATS-modules1.ent"
+        uri="1.2/JATS-modules1.ent"/>
+
+<public publicId="-//NLM//DTD JATS (Z39.96) JATS DTD Suite Module of Modules v1.2 20190208//EN"
+        uri="1.2/JATS-modules1.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/JATS-ali-namespace1.ent"
+        uri="1.2/JATS-ali-namespace1.ent"/>
+
+<public publicId="-//NLM//DTD JATS ALI Namespace Module v1.2 20190208//EN"
+        uri="1.2/JATS-ali-namespace1.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/JATS-common-atts1.ent"
+        uri="1.2/JATS-common-atts1.ent"/>
+
+<public publicId="-//NLM//DTD JATS (Z39.96) JATS DTD Suite Common Attributes (for all elements) v1.2 20190208//EN"
+        uri="1.2/JATS-common-atts1.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/JATS-articleauthcustom-classes1.ent"
+        uri="1.2/JATS-articleauthcustom-classes1.ent"/>
+
+<public publicId="-//NLM//DTD JATS (Z39.96) Article Authoring DTD Over-ride Classes Module v1.2 20190208//EN"
+        uri="1.2/JATS-articleauthcustom-classes1.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/JATS-default-classes1.ent"
+        uri="1.2/JATS-default-classes1.ent"/>
+
+<public publicId="-//NLM//DTD JATS (Z39.96) Default Element Classes Module v1.2 20190208//EN"
+        uri="1.2/JATS-default-classes1.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/JATS-articleauthcustom-mixes1.ent"
+        uri="1.2/JATS-articleauthcustom-mixes1.ent"/>
+
+<public publicId="-//NLM//DTD JATS (Z39.96) Article Authoring DTD Over-ride Mixes Module v1.2 20190208//EN"
+        uri="1.2/JATS-articleauthcustom-mixes1.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/JATS-default-mixes1.ent"
+        uri="1.2/JATS-default-mixes1.ent"/>
+
+<public publicId="-//NLM//DTD JATS (Z39.96) Default Element Mixes Module v1.2 20190208//EN"
+        uri="1.2/JATS-default-mixes1.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/JATS-articleauthcustom-models1.ent"
+        uri="1.2/JATS-articleauthcustom-models1.ent"/>
+
+<public publicId="-//NLM//DTD JATS (Z39.96) Article Authoring DTD Over-ride Content and Attribute Module v1.2 20190208//EN"
+        uri="1.2/JATS-articleauthcustom-models1.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/JATS-common1.ent"
+        uri="1.2/JATS-common1.ent"/>
+
+<public publicId="-//NLM//DTD JATS (Z39.96) JATS DTD Suite Common (Shared) Elements Module v1.2 20190208//EN"
+        uri="1.2/JATS-common1.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/JATS-articlemeta1.ent"
+        uri="1.2/JATS-articlemeta1.ent"/>
+
+<public publicId="-//NLM//DTD JATS (Z39.96) JATS DTD Suite Journal Article Metadata Elements v1.2 20190208//EN"
+        uri="1.2/JATS-articlemeta1.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/JATS-backmatter1.ent"
+        uri="1.2/JATS-backmatter1.ent"/>
+
+<public publicId="-//NLM//DTD JATS (Z39.96) JATS DTD Suite Back Matter Elements v1.2 20190208//EN"
+        uri="1.2/JATS-backmatter1.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/JATS-display1.ent"
+        uri="1.2/JATS-display1.ent"/>
+
+<public publicId="-//NLM//DTD JATS (Z39.96) JATS DTD Suite Display Class Elements v1.2 20190208//EN"
+        uri="1.2/JATS-display1.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/JATS-format1.ent"
+        uri="1.2/JATS-format1.ent"/>
+
+<public publicId="-//NLM//DTD JATS (Z39.96) JATS DTD Suite Formatting Element Classes v1.2 20190208//EN"
+        uri="1.2/JATS-format1.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/JATS-funding1.ent"
+        uri="1.2/JATS-funding1.ent"/>
+
+<public publicId="-//NLM//DTD JATS (Z39.96) JATS DTD Suite Funding Elements v1.2 20190208//EN"
+        uri="1.2/JATS-funding1.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/JATS-link1.ent"
+        uri="1.2/JATS-link1.ent"/>
+
+<public publicId="-//NLM//DTD JATS (Z39.96) JATS DTD Suite Link Class Elements v1.2 20190208//EN"
+        uri="1.2/JATS-link1.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/JATS-list1.ent"
+        uri="1.2/JATS-list1.ent"/>
+
+<public publicId="-//NLM//DTD JATS (Z39.96) JATS DTD Suite List Class Elements v1.2 20190208//EN"
+        uri="1.2/JATS-list1.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/JATS-math1.ent"
+        uri="1.2/JATS-math1.ent"/>
+
+<public publicId="-//NLM//DTD JATS (Z39.96) JATS DTD Suite Math Class Elements v1.2 20190208//EN"
+        uri="1.2/JATS-math1.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/JATS-nlmcitation1.ent"
+        uri="1.2/JATS-nlmcitation1.ent"/>
+
+<public publicId="-//NLM//DTD JATS (Z39.96) NLM Citation v1.2 20190208//EN"
+        uri="1.2/JATS-nlmcitation1.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/JATS-para1.ent"
+        uri="1.2/JATS-para1.ent"/>
+
+<public publicId="-//NLM//DTD JATS (Z39.96) JATS DTD Suite Paragraph-Like Elements v1.2 20190208//EN"
+        uri="1.2/JATS-para1.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/JATS-phrase1.ent"
+        uri="1.2/JATS-phrase1.ent"/>
+
+<public publicId="-//NLM//DTD JATS (Z39.96) JATS DTD Suite Subject Phrase Class Elements v1.2 20190208//EN"
+        uri="1.2/JATS-phrase1.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/JATS-references1.ent"
+        uri="1.2/JATS-references1.ent"/>
+
+<public publicId="-//NLM//DTD JATS (Z39.96) JATS DTD Suite Bibliographic Reference (Citation) Class Elements v1.2 20190208//EN"
+        uri="1.2/JATS-references1.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/JATS-related-object1.ent"
+        uri="1.2/JATS-related-object1.ent"/>
+
+<public publicId="-//NLM//DTD JATS (Z39.96) JATS DTD Suite Related Object Element v1.2 20190208//EN"
+        uri="1.2/JATS-related-object1.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/JATS-section1.ent"
+        uri="1.2/JATS-section1.ent"/>
+
+<public publicId="-//NLM//DTD JATS (Z39.96) JATS DTD Suite Section Class Elements v1.2 20190208//EN"
+        uri="1.2/JATS-section1.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/BITS-embedded-index2.ent"
+        uri="1.2/BITS-embedded-index2.ent"/>
+
+<public publicId="-//NLM//DTD BITS Embedded Index Element Module v2.1 20180401//EN"
+        uri="1.2/BITS-embedded-index2.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/JATS-mathmlsetup1.ent"
+        uri="1.2/JATS-mathmlsetup1.ent"/>
+
+<public publicId="-//NLM//DTD JATS (Z39.96) JATS DTD Suite MathML Setup Module v1.2 20190208//EN"
+        uri="1.2/JATS-mathmlsetup1.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/mathml/mmlextra.ent"
+        uri="1.2/mathml/mmlextra.ent"/>
+
+<public publicId="-//W3C//ENTITIES Extra for MathML 2.0//EN"
+        uri="1.2/mathml/mmlextra.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/mathml/mmlalias.ent"
+        uri="1.2/mathml/mmlalias.ent"/>
+
+<public publicId="-//W3C//ENTITIES Aliases for MathML 2.0//EN"
+        uri="1.2/mathml/mmlalias.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/mathml2.dtd"
+        uri="1.2/mathml2.dtd"/>
+
+<public publicId="-//W3C//DTD MathML 2.0//EN"
+        uri="1.2/mathml2.dtd"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/mathml2-qname-1.mod"
+        uri="1.2/mathml2-qname-1.mod"/>
+
+<public publicId="-//W3C//ENTITIES MathML 2.0 Qualified Names 1.0//EN"
+        uri="1.2/mathml2-qname-1.mod"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/JATS-XHTMLtablesetup1.ent"
+        uri="1.2/JATS-XHTMLtablesetup1.ent"/>
+
+<public publicId="-//NLM//DTD JATS (Z39.96) JATS DTD Suite XHTML Table Setup Module v1.2 20190208//EN"
+        uri="1.2/JATS-XHTMLtablesetup1.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/xhtml-inlstyle-1.mod"
+        uri="1.2/xhtml-inlstyle-1.mod"/>
+
+<public publicId="-//W3C//ENTITIES XHTML Inline Style 1.0//EN"
+        uri="1.2/xhtml-inlstyle-1.mod"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/xhtml-table-1.mod"
+        uri="1.2/xhtml-table-1.mod"/>
+
+<public publicId="-//W3C//ELEMENTS XHTML Tables 1.0//EN"
+        uri="1.2/xhtml-table-1.mod"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/JATS-xmlspecchars1.ent"
+        uri="1.2/JATS-xmlspecchars1.ent"/>
+
+<public publicId="-//NLM//DTD JATS (Z39.96) JATS DTD Suite XML Special Characters Module v1.2 20190208//EN"
+        uri="1.2/JATS-xmlspecchars1.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/iso8879/isolat1.ent"
+        uri="1.2/iso8879/isolat1.ent"/>
+
+<public publicId="-//W3C//ENTITIES Added Latin 1 for MathML 2.0//EN"
+        uri="1.2/iso8879/isolat1.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/iso8879/isolat2.ent"
+        uri="1.2/iso8879/isolat2.ent"/>
+
+<public publicId="-//W3C//ENTITIES Added Latin 2 for MathML 2.0//EN"
+        uri="1.2/iso8879/isolat2.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/iso8879/isobox.ent"
+        uri="1.2/iso8879/isobox.ent"/>
+
+<public publicId="-//W3C//ENTITIES Box and Line Drawing for MathML 2.0//EN"
+        uri="1.2/iso8879/isobox.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/iso8879/isodia.ent"
+        uri="1.2/iso8879/isodia.ent"/>
+
+<public publicId="-//W3C//ENTITIES Diacritical Marks for MathML 2.0//EN"
+        uri="1.2/iso8879/isodia.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/iso8879/isonum.ent"
+        uri="1.2/iso8879/isonum.ent"/>
+
+<public publicId="-//W3C//ENTITIES Numeric and Special Graphic for MathML 2.0//EN"
+        uri="1.2/iso8879/isonum.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/iso8879/isopub.ent"
+        uri="1.2/iso8879/isopub.ent"/>
+
+<public publicId="-//W3C//ENTITIES Publishing for MathML 2.0//EN"
+        uri="1.2/iso8879/isopub.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/iso8879/isocyr1.ent"
+        uri="1.2/iso8879/isocyr1.ent"/>
+
+<public publicId="-//W3C//ENTITIES Russian Cyrillic for MathML 2.0//EN"
+        uri="1.2/iso8879/isocyr1.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/iso8879/isocyr2.ent"
+        uri="1.2/iso8879/isocyr2.ent"/>
+
+<public publicId="-//W3C//ENTITIES Non-Russian Cyrillic for MathML 2.0//EN"
+        uri="1.2/iso8879/isocyr2.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/xmlchars/isogrk1.ent"
+        uri="1.2/xmlchars/isogrk1.ent"/>
+
+<public publicId="-//W3C//ENTITIES Greek Letters//EN"
+        uri="1.2/xmlchars/isogrk1.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/xmlchars/isogrk2.ent"
+        uri="1.2/xmlchars/isogrk2.ent"/>
+
+<public publicId="-//W3C//ENTITIES Monotoniko Greek//EN"
+        uri="1.2/xmlchars/isogrk2.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/xmlchars/isogrk4.ent"
+        uri="1.2/xmlchars/isogrk4.ent"/>
+
+<public publicId="-//W3C//ENTITIES Alternative Greek Symbols//EN"
+        uri="1.2/xmlchars/isogrk4.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/iso9573-13/isotech.ent"
+        uri="1.2/iso9573-13/isotech.ent"/>
+
+<public publicId="-//W3C//ENTITIES General Technical for MathML 2.0//EN"
+        uri="1.2/iso9573-13/isotech.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/iso9573-13/isogrk3.ent"
+        uri="1.2/iso9573-13/isogrk3.ent"/>
+
+<public publicId="-//W3C//ENTITIES Greek Symbols for MathML 2.0//EN"
+        uri="1.2/iso9573-13/isogrk3.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/iso9573-13/isoamsa.ent"
+        uri="1.2/iso9573-13/isoamsa.ent"/>
+
+<public publicId="-//W3C//ENTITIES Added Math Symbols: Arrow Relations for MathML 2.0//EN"
+        uri="1.2/iso9573-13/isoamsa.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/iso9573-13/isoamsb.ent"
+        uri="1.2/iso9573-13/isoamsb.ent"/>
+
+<public publicId="-//W3C//ENTITIES Added Math Symbols: Binary Operators for MathML 2.0//EN"
+        uri="1.2/iso9573-13/isoamsb.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/iso9573-13/isoamsc.ent"
+        uri="1.2/iso9573-13/isoamsc.ent"/>
+
+<public publicId="-//W3C//ENTITIES Added Math Symbols: Delimiters for MathML 2.0//EN"
+        uri="1.2/iso9573-13/isoamsc.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/iso9573-13/isoamsn.ent"
+        uri="1.2/iso9573-13/isoamsn.ent"/>
+
+<public publicId="-//W3C//ENTITIES Added Math Symbols: Negated Relations for MathML 2.0//EN"
+        uri="1.2/iso9573-13/isoamsn.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/iso9573-13/isoamso.ent"
+        uri="1.2/iso9573-13/isoamso.ent"/>
+
+<public publicId="-//W3C//ENTITIES Added Math Symbols: Ordinary for MathML 2.0//EN"
+        uri="1.2/iso9573-13/isoamso.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/iso9573-13/isoamsr.ent"
+        uri="1.2/iso9573-13/isoamsr.ent"/>
+
+<public publicId="-//W3C//ENTITIES Added Math Symbols: Relations for MathML 2.0//EN"
+        uri="1.2/iso9573-13/isoamsr.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/iso9573-13/isomscr.ent"
+        uri="1.2/iso9573-13/isomscr.ent"/>
+
+<public publicId="-//W3C//ENTITIES Math Alphabets: Script for MathML 2.0//EN"
+        uri="1.2/iso9573-13/isomscr.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/iso9573-13/isomfrk.ent"
+        uri="1.2/iso9573-13/isomfrk.ent"/>
+
+<public publicId="-//W3C//ENTITIES Math Alphabets: Fraktur for MathML 2.0//EN"
+        uri="1.2/iso9573-13/isomfrk.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/iso9573-13/isomopf.ent"
+        uri="1.2/iso9573-13/isomopf.ent"/>
+
+<public publicId="-//W3C//ENTITIES Math Alphabets: Open Face for MathML 2.0//EN"
+        uri="1.2/iso9573-13/isomopf.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/JATS-chars1.ent"
+        uri="1.2/JATS-chars1.ent"/>
+
+<public publicId="-//NLM//DTD JATS (Z39.96) JATS DTD Suite Custom Special Characters Module v1.2 20190208//EN"
+        uri="1.2/JATS-chars1.ent"/>
+
+<system systemId="https://jats.nlm.nih.gov/articleauthoring/1.2/JATS-notat1.ent"
+        uri="1.2/JATS-notat1.ent"/>
+
+<public publicId="-//NLM//DTD JATS (Z39.96) JATS DTD Suite Notation Declarations v1.2 20190208//EN"
+        uri="1.2/JATS-notat1.ent"/>
+
+</catalog>

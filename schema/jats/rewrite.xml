@@ -1,0 +1,5 @@
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+  <rewriteSystem systemIdStartString="https://jats.nlm.nih.gov/articleauthoring/1.2/"
+                 rewritePrefix="1.2/"/>
+</catalog>
+

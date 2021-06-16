@@ -1,0 +1,33 @@
+<article xmlns="http://docbook.org/ns/docbook"
+         version="5.1">
+<info>
+<title>Example Article</title>
+<author>
+<personname><surname>Walsh</surname>
+<givenname>Norman</givenname></personname>
+<contrib>markup hacker</contrib>
+<affiliation>
+<org>
+<orgname>Irrelevant</orgname>
+</org>
+</affiliation>
+<personblurb>
+<para>This is just a sample; it validates against the DTD,
+but I’m not claiming any more than that.</para>
+</personblurb>
+</author>
+<abstract>
+<para>This is the abstract for an example article. Given
+that the article is about nothing, so is the abstract.</para>
+</abstract>
+<keywordset>
+<keyword>markup</keyword>
+<keyword>DocBook</keyword>
+<keyword>OASIS Catalogs</keyword>
+<keyword>XML Resolver</keyword>
+</keywordset>
+</info>
+<para>This is just a sample XML document written to conform
+to the DocBook 5.1 Schema. Beyond conforming to the schema,
+it’s really got nothing to offer.</para>
+</article>

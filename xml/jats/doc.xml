@@ -1,0 +1,38 @@
+<!DOCTYPE article SYSTEM
+  "https://jats.nlm.nih.gov/articleauthoring/1.2/JATS-articleauthoring1.dtd">
+<article dtd-version="1.2">
+<front>
+<article-meta>
+<title-group>
+<article-title>Example Article</article-title>
+</title-group>
+<contrib-group>
+<contrib contrib-type="author">
+<name><surname>Walsh</surname>
+<given-names>Norman</given-names></name>
+<role>markup hacker</role>
+<aff>Irrelevant</aff>
+<author-comment>
+<p>This is just a sample; it validates against the DTD,
+but I’m not claiming any more than that.</p>
+</author-comment>
+</contrib>
+</contrib-group>
+<abstract>
+<p>This is the abstract for an example article. Given
+that the article is about nothing, so is the abstract.</p>
+</abstract>
+<kwd-group vocab="uncontrolled">
+<kwd>markup</kwd>
+<kwd>JATS</kwd>
+<kwd>OASIS Catalogs</kwd>
+<kwd>XML Resolver</kwd>
+</kwd-group>
+</article-meta>
+</front>
+<body>
+<p>This is just a sample XML document written to conform
+to the JATS 1.2 Authoring DTD. Beyond conforming to the DTD,
+it’s really got nothing to offer.</p>
+</body>
+</article>

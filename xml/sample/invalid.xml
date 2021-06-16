@@ -1,0 +1,5 @@
+<doc xmlns="http://xmlresolver.org/ns/sample">
+<title>Document Title</title>
+<error/>
+<p>This is some <emphasis>text</emphasis>.</p>
+</doc>

@@ -1,0 +1,7 @@
+<doc xmlns="http://xmlresolver.org/ns/sample">
+<title>Sample Document</title>
+<p>This document is authored in the “sample” schema.</p>
+<p>It’s just a tiny XSD example, there’s nothing useful or interesting
+about the schema itself.</p>
+<p>This is some <emphasis>text</emphasis>.</p>
+</doc>

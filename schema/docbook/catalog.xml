@@ -1,0 +1,6 @@
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+
+  <uri name="https://cdn.docbook.org/schema/5.1/rng/docbook.rng"
+          uri="5.1/docbook.rng"/>
+
+</catalog>
