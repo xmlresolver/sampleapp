@@ -112,8 +112,9 @@ jar.dependsOn setupDist
 
 task copyJar(dependsOn: ["jar", "setupDist"], type: Copy) {
   into "${buildDir}/dist"
-  from "${buildDir}/libs"
-  include "*.jar"
+  from ("${buildDir}/libs") {
+    include "*.jar"
+  }
 }
 
 task dist(dependsOn: ["copyJar", "setupDist"], type: Zip) {
