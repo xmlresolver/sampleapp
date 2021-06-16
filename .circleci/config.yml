@@ -32,7 +32,7 @@ jobs:
             - ~/.gradle
           key: v1-dependencies-{{ checksum "build.gradle" }}
 
-      - run: ./gradlew setupDist
+      - run: ./gradlew jar
 
       - run: ls -lAR build
 
