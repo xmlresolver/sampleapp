@@ -117,7 +117,9 @@ task copyJar(dependsOn: ["jar", "setupDist"], type: Copy) {
 }
 
 task dist(dependsOn: ["copyJar", "setupDist"], type: Zip) {
-  from("${buildDir}/dist")
+  from("${buildDir}/dist") {
+    include "**/*"
+  }
   into 'xmlresolver-sampleapp-' + relVersion
   archiveFileName = "xmlresolver-sampleapp-${relVersion}.zip"
 }
