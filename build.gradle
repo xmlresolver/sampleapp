@@ -110,7 +110,7 @@ jar {
 }
 jar.dependsOn setupDist
 
-task copyJar(dependsOn: ["jar"], type: Copy) {
+task copyJar(dependsOn: ["jar", "setupDist"], type: Copy) {
   into "${buildDir}/dist"
   from "${buildDir}/libs"
   include "*.jar"

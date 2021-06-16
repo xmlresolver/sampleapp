@@ -34,7 +34,7 @@ jobs:
 
       - run: ./gradlew dist
 
-      - run: ls -lA build/distributions
+      - run: ls -lAR build
 
       - persist_to_workspace:
           root: build
