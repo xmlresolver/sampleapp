@@ -368,6 +368,7 @@ XML Schema validation: valid
 Just for completeness, here’s an example that uses the DocBook xslTNG jar file to
 resolve stylesheet URIs:
 
+```
 $ java -cp docbook/docbook-xslTNG-1.5.0.jar\
 :docbook/schemas-docbook-5.2b10a4.jar\
 :sampleapp-@@SAMPVER@@.jar org.xmlresolver.example.SampleApp \
