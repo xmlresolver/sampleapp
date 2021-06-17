@@ -1,7 +1,10 @@
-<doc xmlns="http://xmlresolver.org/ns/sample">
-<title>Sample Document</title>
-<p>This document is authored in the “sample” schema.</p>
-<p>It’s just a tiny XSD example, there’s nothing useful or interesting
-about the schema itself.</p>
-<p>This is some <emphasis>text</emphasis>.</p>
-</doc>
+<book xmlns="http://xmlresolver.com/ns/sample"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://xmlresolver.com/ns/sample sample.xsd">
+<title>A sample book</title>
+<article>
+<p>This <link xmlns:xlink="http://www.w3.org/1999/xlink"
+              xlink:href="http://xmlresolver.org/ns/sample">book</link>
+is very short.</p>
+</article>
+</book>

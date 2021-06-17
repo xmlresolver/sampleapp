@@ -35,6 +35,9 @@ configurations.all {
 }
 
 configurations {
+  docbookImplementation {
+    canBeResolved = true
+  }
   standaloneClasspath.extendsFrom(testImplementation)
 }
 
@@ -43,9 +46,11 @@ dependencies {
     [group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'],
     [group: 'org.apache.httpcomponents', name: 'httpcore', version: '4.4.13'],
     [group: 'net.java.dev.msv', name: 'msv-core', version: '2013.6.1'],
-    [group: 'org.xmlresolver', name: 'xmlresolver', version: "3.0.0-SNAPSHOT"],
-    [group: 'org.xmlresolver', name: 'xmlresolver', version: "3.0.0-SNAPSHOT",
+    [group: 'org.xmlresolver', name: 'xmlresolver', version: xmlresolverVersion],
+    [group: 'org.xmlresolver', name: 'xmlresolver', version: xmlresolverVersion,
      classifier: 'data'],
+    [group: 'org.xmlresolver', name: 'xmlresolver', version: xmlresolverVersion,
+     classifier: 'apps'],
     [group: 'xml-apis', name: 'xml-apis', version: '1.4.01' ],
     [group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30' ],
     [group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.30' ],
@@ -66,6 +71,19 @@ task setupDist() {
     File file -> path += " lib/" + file.name
   }
   project.ext.runtimeClasspath = path.trim()
+
+  // HACK!
+  configurations.docbookImplementation.resolve().each { dbpath ->
+    if (dbpath.name.contains('docbook-xslTNG')
+        || dbpath.name.contains('schemas-docbook')) {
+      doLast {
+        copy {
+          into { "${buildDir}/dist/docbook" }
+          from dbpath
+        }
+      }
+    }
+  }
 
   doLast {
     copy {
@@ -99,7 +117,7 @@ task setupDist() {
 }
 
 jar {
-  archiveBaseName = "xmlresolver-sampleapp-${relVersion}"
+  archiveBaseName = "sampleapp-${relVersion}"
   bnd ('Bundle-Vendor': 'Norman Walsh',
        'Bundle-Description': 'XML Resolver example application.',
        'Class-Path': "${project.ext.runtimeClasspath} lib",
@@ -110,14 +128,41 @@ jar {
 }
 jar.dependsOn setupDist
 
-task copyJar(dependsOn: ["jar", "setupDist"], type: Copy) {
-  into "${buildDir}/dist"
-  from "${buildDir}/libs"
-  include "*.jar"
+// Initially, I simply had the copyJar task copy the built jar
+// into the build/dist directory. But on the CI instance, this
+// always resulted in the files already in build/dist being
+// deleted. I couldn't reliably reproduce that on a Mac or
+// Linux, though I did think it happened once on my Linux test
+// rig. I'm punting and doing this instead, which seems to work.
+task copyJar(dependsOn: ["jar", "setupDist"]) {
+  doLast {
+    copy {
+      into "${buildDir}/stage"
+      from ("${buildDir}/dist") {
+        exclude "lib/xmlresolver-${xmlresolverVersion}-apps.jar"
+      }
+    }
+  }
+
+  doLast {
+    copy {
+      into "${buildDir}/stage"
+      from ("${buildDir}/dist/lib") {
+        include "xmlresolver-${xmlresolverVersion}-apps.jar"
+      }
+    }
+  }
+
+  doLast {
+    copy {
+      into "${buildDir}/stage"
+      from "${buildDir}/libs"
+    }
+  }
 }
 
 task dist(dependsOn: ["copyJar", "setupDist"], type: Zip) {
-  from("${buildDir}/dist")
+  from "${buildDir}/stage"
   into 'xmlresolver-sampleapp-' + relVersion
   archiveFileName = "xmlresolver-sampleapp-${relVersion}.zip"
 }

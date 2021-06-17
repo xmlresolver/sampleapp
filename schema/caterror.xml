@@ -1,0 +1,6 @@
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+
+   <system systemid="http://example.com/sample.dtd"
+           uri="sample.dtd"/>
+
+</catalog>

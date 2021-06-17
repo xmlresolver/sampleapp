@@ -1,8 +1,10 @@
 package org.xmlresolver.example;
 
 import com.thaiopensource.util.PropertyMapBuilder;
+import com.thaiopensource.validate.SchemaReader;
 import com.thaiopensource.validate.ValidateProperty;
 import com.thaiopensource.validate.ValidationDriver;
+import com.thaiopensource.validate.rng.CompactSchemaReader;
 import net.sf.saxon.Configuration;
 import net.sf.saxon.s9api.Processor;
 import net.sf.saxon.s9api.SaxonApiException;
@@ -40,17 +42,19 @@ import javax.xml.validation.SchemaFactory;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 public class SampleApp {
     private static final ArrayList<String> catalogs = new ArrayList<>();
     private static final ArrayList<String> xsds = new ArrayList<>();
     private static Boolean useResolver = null;
-    private static boolean xsd11 = false;
+    private static Boolean classpathCatalogs = null;
     private static boolean useCache = false;
     private static String cache = null;
     private static boolean dtdValidate = false;
@@ -92,9 +96,6 @@ public class SampleApp {
                     useCache = true;
                 } else if (arg.startsWith("-xsd:")) {
                     xsds.add(arg.substring(5));
-                } else if (arg.startsWith("-xsd11:")) {
-                    xsd11 = true;
-                    xsds.add(arg.substring(7));
                 } else if (arg.startsWith("-rng:")) {
                     if (rng != null) {
                         fail("Only one -rng: option may be specified");
@@ -107,6 +108,16 @@ public class SampleApp {
                     xsl = arg.substring(5);
                 } else if (arg.startsWith("-catalog:")) {
                     catalogs.add(arg.substring(9));
+                } else if ("-classpath-catalogs".equals(arg)) {
+                    if (classpathCatalogs != null) {
+                        fail("You can only specify one of -classpath-catalogs and -no-classpath-catlogs");
+                    }
+                    classpathCatalogs = Boolean.TRUE;
+                } else if ("-no-classpath-catalogs".equals(arg)) {
+                    if (classpathCatalogs != null) {
+                        fail("You can only specify one of -classpath-catalogs and -no-classpath-catlogs");
+                    }
+                    classpathCatalogs = Boolean.FALSE;
                 } else {
                     fail("Unrecognized option: " + arg);
                 }
@@ -121,6 +132,10 @@ public class SampleApp {
 
         if (useResolver == null) {
             useResolver = Boolean.TRUE;
+        }
+
+        if (classpathCatalogs == null) {
+            classpathCatalogs = Boolean.TRUE;
         }
 
         if (!useResolver && validateCatalogs) {
@@ -147,23 +162,21 @@ public class SampleApp {
     }
 
     private static void usage() {
-        System.out.println("Usage: Process [options] document.xml\n" +
+        System.out.println("Usage: org.xmlresolver.example.SampleApp [options] document.xml\n" +
                 "\n" +
                 "Options:\n" +
-                "  -catalog:file  Use ‘file’ as an XML Catalog\n" +
-                "  -validate      Validate catalog files when they’re loaded\n" +
                 "  -dtd           Perform a (DTD) validating parse of the document\n" +
-                "  -cache         Enable caching (using the defaulted cache directory)\n" +
-                "  -cache:dir     Enable caching, use ‘dir’ as the cache directory\n" +
-                "  -xsd:file      Perform XML Schema validation with ‘file’\n" +
-                "  -xsd11:file    Perform XML Schema 1.1 validation with ‘file’\n" +
-                "  -rng:file      Perform RELAX NG validation with ‘file’\n" +
-                "  -xsl:file      Perform an XSLT transformation with ‘file’\n" +
-                "  -resolver      Use the resolver (the default)\n" +
-                "  -no-resolver   Don't use the resolver\n" +
-                "  -help          Print this usage message\n" +
+                "  -xsd:file      Perform XML Schema validation with XML Schema ‘file’\n" +
+                "  -rng:file      Perform RELAX NG validation with RELAX NG grammar ‘file’\n" +
+                "  -xsl:file      Perform an XSLT transformation with stylesheet ‘file’\n" +
+                "  -catalog:file  Use ‘file’ as an XML Catalog\n" +
+                "  -cache[:dir]   Enable caching (using ‘dir’ as the cache directory)\n" +
+                "  -validate      Validate catalog files when they’re loaded\n" +
+                "  -[no-]resolver            [Don't] use the resolver (the default)\n" +
+                "  -[no-]classpath-catalogs  [Don't] search the classpath for catalogs\n" +
+                "  -help                     Print this usage message\n" +
                 "\n" +
-                "The -catalog and -xsd/-xsd11 options may be repeated.\n");
+                "The -catalog and -xsd options may be repeated.\n");
         System.exit(0);
     }
 
@@ -178,7 +191,16 @@ public class SampleApp {
         List<URL> propertyFiles = Collections.singletonList(propurl);
         XMLResolverConfiguration config = new XMLResolverConfiguration(propertyFiles, catalogs);
         config.setFeature(ResolverFeature.CACHE_UNDER_HOME, false);
-        config.setFeature(ResolverFeature.CACHE_DIRECTORY, cache);
+        config.setFeature(ResolverFeature.CLASSPATH_CATALOGS, classpathCatalogs);
+
+        if (useCache) {
+            if (cache != null) {
+                config.setFeature(ResolverFeature.CACHE_DIRECTORY, cache);
+            }
+        } else {
+            config.setFeature(ResolverFeature.CACHE_DIRECTORY, null);
+        }
+
         if (validateCatalogs) {
             config.setFeature(ResolverFeature.CATALOG_LOADER_CLASS, "org.xmlresolver.loaders.ValidatingXmlLoader");
         }
@@ -194,9 +216,9 @@ public class SampleApp {
         }
 
         if (config.getFeature(ResolverFeature.ALLOW_CATALOG_PI)) {
-            System.out.println("If an OASIS XML Catalogs processing instruction is used, its catalog will be used");
+            System.out.println("OASIS XML Catalogs processing instruction catalogs will be used");
         } else {
-            System.out.println("If an OASIS XML Catalogs processing instruction is used, its catalog will be ignored");
+            System.out.println("OASIS XML Catalogs processing instruction catlaogs will be ignored");
         }
 
         ResourceCache cache = config.getFeature(ResolverFeature.CACHE);
@@ -219,11 +241,7 @@ public class SampleApp {
             System.out.println("Continuing with RELAX NG validation with " + rng);
         }
         if (!xsds.isEmpty()) {
-            String ver = "1.0";
-            if (xsd11) {
-                ver = "1.1";
-            }
-            System.out.println("Continuing with XML Schema " + ver + " validation with:");
+            System.out.println("Continuing with XML Schema validation with:");
             for (String xsd : xsds) {
                 System.out.println("\t" + xsd);
             }
@@ -239,7 +257,12 @@ public class SampleApp {
             }
         }
 
-        ChattyResolver chattyResolver = new ChattyResolver(getResolver());
+        ChattyResolver chattyResolver;
+        if (useResolver) {
+            chattyResolver = new ChattyResolver(getResolver());
+        } else {
+            chattyResolver = new ChattyResolver(null);
+        }
 
         try {
             SAXParserFactory spf = SAXParserFactory.newInstance();
@@ -265,14 +288,28 @@ public class SampleApp {
                 PropertyMapBuilder builder = new PropertyMapBuilder();
                 builder.put(ValidateProperty.ENTITY_RESOLVER, chattyResolver);
                 builder.put(ValidateProperty.URI_RESOLVER, chattyResolver);
-                ValidationDriver driver = new ValidationDriver();
+
+                SchemaReader sr = null;
+                // Hack. Could have an option for this, or could buffer the schema
+                // so that it can be read twice. But for this little sample application,
+                // let's just do the easy thing.
+                if (rng.toLowerCase().endsWith(".rnc")) {
+                    sr = CompactSchemaReader.getInstance();
+                }
+
+                ValidationDriver driver = new ValidationDriver(builder.toPropertyMap(), builder.toPropertyMap(), sr);
 
                 Source schemaSource = ((URIResolver) chattyResolver).resolve(rng, null);
-                ResolverSAXSource schema = (ResolverSAXSource) schemaSource;
+                SAXSource schema = (ResolverSAXSource) schemaSource;
+                if (schemaSource == null) {
+                    URI suri = URI.create("file://" + System.getProperty("user.dir") + "/").resolve(rng);
+                    schema = new SAXSource(new InputSource(suri.toString()));
+                }
 
                 if (!driver.loadSchema(schema.getInputSource())) {
                     fail("Could not load schema!");
                 }
+                
                 InputSource source = new InputSource(document);
                 if (driver.validate(source)) {
                     System.out.println("RELAX NG validation: valid");
@@ -316,11 +353,7 @@ public class SampleApp {
             Schema schemas = null;
             try {
                 SchemaFactory sf;
-                if (xsd11) {
-                    sf = SchemaFactory.newInstance("http://www.w3.org/XML/XMLSchema/v1.1");
-                } else {
-                    sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-                }
+                sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
                 sf.setResourceResolver(chattyResolver);
                 schemas = sf.newSchema(schemaSources);
             } catch (SAXException ex) {

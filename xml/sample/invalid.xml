@@ -1,5 +1,6 @@
-<doc xmlns="http://xmlresolver.org/ns/sample">
-<title>Document Title</title>
-<error/>
-<p>This is some <emphasis>text</emphasis>.</p>
-</doc>
+<book xmlns="http://xmlresolver.com/ns/sample">
+<title>An invalid book</title>
+<article>
+<p>A <p>nested</p> paragraph is invalid.</p>
+</article>
+</book>
