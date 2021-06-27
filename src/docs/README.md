@@ -7,9 +7,17 @@ integrate the resolver into other applications.
 
 ## What is it?
 
-A simple application that performs
+A simple application that has three features:
 
-1. Well-formed or validating parses of XML documents.
+1. It can parse a document and perform validation and transformation on it.
+2. It can perform specific lookup operations in a set of catalogs.
+3. It can show the catalog entries found by the resolver in a set of catalogs.
+
+### Validation and parsing
+
+Four operations can be performed on a document:
+
+1. Well-formed or validating parsing.
 2. XML Schema validation with Xerces.
 3. RELAX NG validation with Jing.
 4. XSLT transformations with Saxon-HE.
@@ -18,15 +26,26 @@ Parsing XML documents demonstrates how external identifiers are
 resolved. The other features demonstrate various forms of URI
 resolution.
 
+### Lookup operations
+
+Performs specific lookup operations (system, public, entity, URI,
+etc.) and returns the resolved URI from a set of catalogs.
+
+### Showing catalog entries
+
+Displays all (or a subset) of the entries in a set of catalogs. This
+displays what the catalog parser determined to be the valid entries in
+the catalogs.
+
 ## What does it do?
 
 The point of the application is to demonstrate how the resolver works;
 the validation outcomes and XSLT results are not the
 most important part.
 
-The application installs a very “chatty” resolver that will print
-information about each request, how it was processed, and what was
-returned. For example:
+The parsing application installs a very “chatty” resolver that will
+print information about each request, how it was processed, and what
+was returned. For example:
 
 ```
 ✗ Resolved: [dtd]: https://example.com/sample.dtd (-//Example//DTD Sample v1.0//EN)
@@ -51,46 +70,71 @@ comes from a `jar:` or `classpath:` URI.
 
 ## Command line options
 
-Running the application with no arguments will print a summary of the
+Running the application with no arguments will a summary of the
 command line options:
 
 ```
 $ java -jar sampleapp-@@SAMPVER@@.jar
-Usage: org.xmlresolver.example.SampleApp [options] document.xml
+Usage: SampleApp [options] [command] [command options]
+  Options:
+    -help, -h, --help
+      Display help
+    -cache
+      Enable caching
+      Default: false
+    -cache-directory, -cache-dir
+      Directory to use for caching (implies -cache)
+    -catalog
+      Use XML Catalog for resolution
+      Default: []
+    -classpath-catalogs, -cp
+      Search the classpath for catalogs
+      Default: true
+    -resolver
+      Use the XML Resolver during processing
+      Default: true
+    -validate
+      Validate catalog files
+      Default: false
+  Commands:
+    parse      Parse, validate, and/or transform a document
+      Usage: parse [options] The document to process
+        Options:
+          -dtd
+            Perform a (DTD) validating parse
+            Default: false
+          -rng
+            Perform RELAX NG validation with grammar
+          -xsd
+            Perform XML Schema validation with schema(s)
+            Default: []
+          -xsl
+            Transform the document wht the XSL stylesheet
 
-Options:
-  -dtd           Perform a (DTD) validating parse of the document
-  -xsd:file      Perform XML Schema validation with XML Schema ‘file’
-  -rng:file      Perform RELAX NG validation with RELAX NG grammar ‘file’
-  -xsl:file      Perform an XSLT transformation with stylesheet ‘file’
-  -catalog:file  Use ‘file’ as an XML Catalog
-  -cache[:dir]   Enable caching (using ‘dir’ as the cache directory)
-  -validate      Validate catalog files when they’re loaded
-  -[no-]resolver            [Don't] use the resolver (the default)
-  -[no-]classpath-catalogs  [Don't] search the classpath for catalogs
-  -help                     Print this usage message
+    lookup      Lookup entries in the catalog(s)
+      Usage: lookup [options]
+        Options:
+          -name
+            Specify the doctype or entity name
+          -nature
+            Specify the namespace nature
+          -public
+            Specify the public identifier
+          -purpose
+            Specify the namespace purpose
+          -system
+            Specify the system identifier
+          -type
+            Perform lookup of a particular type
+          -uri
+            Specify the URI
 
-The -catalog and -xsd options may be repeated.
+    show      Show the content of the catalog(s)
+      Usage: show [options]
+        Options:
+          -regex, -r
+            A regular expression to filter the entries shown
 ```
-
-The filename you provide will be parsed and processed according to the
-options provided:
-
-* `-dtd` enables DTD validation during the initial parse
-* `-xsd` enables XML Schema validation with the specified schema(s)
-* `-rng` enables RELAX NG validation with the specified grammar
-* `-xsl` enables XSLT transformation with the specified stylesheet
-* `-catalog` allows you to specify one or more catalogs to use
-* `-cache` enables caching. If you specify a directory, it will be used
-  as the cache directory. If you don’t specify a directory, the default
-  is `./xmlresolver-cache`.
-* `-validate` enables validation *of the XML Catalog files*; this has nothing
-  to do with the main document being processed
-* `-no-resolver` will disable the resolver entirely. By default, the resolver
-  will be used.
-* `-no-classpath-catalogs` will disable automatic searching for catalogs on
-  the classpath. By default, the resolver will search for catalogs in
-  `org/xmlresolver/catalog.xml` on the classpath.
 
 ## Examples
 
@@ -200,7 +244,7 @@ JATS directory:
 ```
 ✓ Resolved: %ent-mmlextra: file:/Users/ndw/Projects/xmlresolver/sampleapp/build/stage/schema/jats/1.2/mathml/mmlextra.ent (-//W3C//ENTITIES Extra for MathML 2.0//EN)
         as: mathml/mmlextra.ent
-      from: jar:file:/Users/ndw/Projects/xmlresolver/sampleapp/build/stage/lib/xmlresolver-@@SAMPVER@@-SNAPSHOT-data.jar!/org/xmlresolver/www.w3.org/Math/DTD/mathml2/mathml/mmlextra.ent
+      from: jar:file:/Users/ndw/Projects/xmlresolver/sampleapp/build/stage/lib/xmlresolver-@@SAMPVER@@-data.jar!/org/xmlresolver/www.w3.org/Math/DTD/mathml2/mathml/mmlextra.ent
 ```
 
 The XML Resolver ships with a “data” jar file that contains a large
@@ -246,10 +290,10 @@ fraction of a second:
 $ java -jar sampleapp-@@SAMPVER@@.jar -dtd xml/xhtml/index.xhtml
 ✓ Resolved: [dtd]: https://www.w3.org/MarkUp/DTD/xhtml11.dtd (-//W3C//DTD XHTML 1.1//EN)
         as: https://www.w3.org/MarkUp/DTD/xhtml11.dtd
-      from: jar:file:/Users/ndw/Projects/xmlresolver/sampleapp/build/stage/lib/xmlresolver-@@SAMPVER@@-SNAPSHOT-data.jar!/org/xmlresolver/www.w3.org/MarkUp/DTD/xhtml11.dtd
+      from: jar:file:/Users/ndw/Projects/xmlresolver/sampleapp/build/stage/lib/xmlresolver-@@SAMPVER@@-data.jar!/org/xmlresolver/www.w3.org/MarkUp/DTD/xhtml11.dtd
 ✓ Resolved: %xhtml-inlstyle.mod: http://www.w3.org/TR/xhtml-modularization/DTD/xhtml-inlstyle-1.mod (-//W3C//ELEMENTS XHTML Inline Style 1.0//EN)
         as: http://www.w3.org/TR/xhtml-modularization/DTD/xhtml-inlstyle-1.mod
-      from: jar:file:/Users/ndw/Projects/xmlresolver/sampleapp/build/stage/lib/xmlresolver-@@SAMPVER@@-SNAPSHOT-data.jar!/org/xmlresolver/www.w3.org/MarkUp/DTD/xhtml-inlstyle-1.mod
+      from: jar:file:/Users/ndw/Projects/xmlresolver/sampleapp/build/stage/lib/xmlresolver-@@SAMPVER@@-data.jar!/org/xmlresolver/www.w3.org/MarkUp/DTD/xhtml-inlstyle-1.mod
 …
 ```
 
@@ -261,7 +305,7 @@ explicitly:
 
 ```
 $ java -jar sampleapp-@@SAMPVER@@.jar -dtd -no-classpath-catalogs \
-       -catalog:jar:file:lib/xmlresolver-@@SAMPVER@@-SNAPSHOT-data.jar!/org/xmlresolver/catalog.xml \
+       -catalog:jar:file:lib/xmlresolver-@@SAMPVER@@-data.jar!/org/xmlresolver/catalog.xml \
        xml/xhtml/index.xhtml
 …
 ```
@@ -277,7 +321,7 @@ falling over because someone puts a typo in a catalog:
 $ java -jar sampleapp-@@SAMPVER@@.jar -dtd -catalog:schema/caterror.xml xml/xhtml/index.xhtml
 ✓ Resolved: [dtd]: https://www.w3.org/MarkUp/DTD/xhtml11.dtd (-//W3C//DTD XHTML 1.1//EN)
         as: https://www.w3.org/MarkUp/DTD/xhtml11.dtd
-      from: jar:file:/Users/ndw/Projects/xmlresolver/sampleapp/build/stage/lib/xmlresolver-@@SAMPVER@@-SNAPSHOT-data.jar!/org/xmlresolver/www.w3.org/MarkUp/DTD/xhtml11.dtd
+      from: jar:file:/Users/ndw/Projects/xmlresolver/sampleapp/build/stage/lib/xmlresolver-@@SAMPVER@@-data.jar!/org/xmlresolver/www.w3.org/MarkUp/DTD/xhtml11.dtd
 …
 ```
 
@@ -388,18 +432,4 @@ RELAX NG validation: valid
       from: classpath:org/docbook/xsltng/xslt/main.xsl
 …
 Done
-```
-
-## What is the other jar file?
-
-The distribution also contains a copy of the “apps” jar from the XML
-Resolver. This jar contains the “CacheDetails” application that will
-show you what is in your XML Resolver cache, if you have one.
-
-Try:
-
-```
-$ java -jar xmlresolver-@@RESVER@@-apps.jar ./resolver-cache
-Cache contains 73 entries
-…
 ```

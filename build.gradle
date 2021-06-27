@@ -1,18 +1,6 @@
-buildscript {
-  repositories {
-    mavenCentral()
-  }
-
-  dependencies {
-    classpath group: 'biz.aQute.bnd', name: 'biz.aQute.bnd.gradle', version: '5.0.1'
-  }
-}
-
 plugins {
   id "java"
 }
-
-apply plugin: 'biz.aQute.bnd.builder'
 
 repositories {
   mavenLocal()
@@ -45,17 +33,15 @@ dependencies {
   implementation (
     [group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'],
     [group: 'org.apache.httpcomponents', name: 'httpcore', version: '4.4.13'],
-    [group: 'net.java.dev.msv', name: 'msv-core', version: '2013.6.1'],
     [group: 'org.xmlresolver', name: 'xmlresolver', version: xmlresolverVersion],
     [group: 'org.xmlresolver', name: 'xmlresolver', version: xmlresolverVersion,
      classifier: 'data'],
-    [group: 'org.xmlresolver', name: 'xmlresolver', version: xmlresolverVersion,
-     classifier: 'apps'],
     [group: 'xml-apis', name: 'xml-apis', version: '1.4.01' ],
     [group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30' ],
     [group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.30' ],
     [group: 'net.sf.saxon', name: 'Saxon-HE', version: '10.5'],
-    [group: 'org.relaxng', name: 'jing', version: '20181222' ]
+    [group: 'org.relaxng', name: 'jing', version: '20181222' ],
+    [group: 'com.beust', name: 'jcommander', version: '1.81' ]
   )
 
   docbookImplementation (
@@ -105,26 +91,19 @@ task setupDist() {
       from "schema"
     }
   }
-
-  doLast {
-    copy {
-      into { "${buildDir}/dist" }
-      from ("${buildDir}/libs") {
-        include "xmlresolver-sampleapp-${relVersion}.jar"
-      }
-    }
-  }
 }
 
 jar {
   archiveBaseName = "sampleapp-${relVersion}"
-  bnd ('Bundle-Vendor': 'Norman Walsh',
-       'Bundle-Description': 'XML Resolver example application.',
-       'Class-Path': "${project.ext.runtimeClasspath} lib",
-       'Implementation-Title': 'XML Resolver sample application',
-       'Implementation-Version': relVersion,
-       'Main-Class': 'org.xmlresolver.example.SampleApp'
-  )
+  manifest {
+    attributes 'Built-By': 'Norman Walsh'
+    attributes 'Bundle-Vendor': 'Norman Walsh'
+    attributes 'Bundle-Description': 'XML Resolver example application.'
+    attributes 'Class-Path': "${project.ext.runtimeClasspath} lib"
+    attributes 'Implementation-Title': 'XML Resolver sample application'
+    attributes 'Implementation-Version': relVersion
+    attributes 'Main-Class': 'org.xmlresolver.example.SampleApp'
+  }
 }
 jar.dependsOn setupDist
 

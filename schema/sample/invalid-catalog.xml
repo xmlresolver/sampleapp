@@ -1,0 +1,8 @@
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog"
+         prefer="public">
+
+  <!-- this is an intentionally invalid catalog -->
+
+  <not-public publicId="-//Sample//DTD Simple 1.0//EN"
+              uri="sample.dtd"/>
+</catalog>
