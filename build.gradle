@@ -50,6 +50,8 @@ dependencies {
   )
 }
 
+println("Building with Java version ${System.getProperty('java.version')}")
+
 task setupDist() {
   FileCollection runtime  = configurations.standaloneClasspath
   String path = ""
